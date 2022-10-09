@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   reachedTheEnd2: boolean;
 
-  public reachedTheEnd: boolean;
+  public isLoading: boolean = true;
 
   @ViewChild('intro', { static: true }) home: ElementRef;
   @ViewChild('about') about: ElementRef;
@@ -49,7 +49,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     private decimalPipe: DecimalPipe,
     private readonly navigatePagesService: NavigationPageService
   ) {}
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+  }
 
   verificarIdElemtHtml(): void {
     const sections = [
