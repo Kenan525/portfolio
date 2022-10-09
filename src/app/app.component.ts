@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   reachedTheEnd2: boolean;
 
-  public isLoading: boolean = true;
+  public reachedTheEnd: boolean;
 
   @ViewChild('intro', { static: true }) home: ElementRef;
   @ViewChild('about') about: ElementRef;
