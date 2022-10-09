@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class NavegationPagesService {
+export class NavigationPageService {
   private _pagina = new BehaviorSubject<string>('');
   public pagina$ = this._pagina.asObservable();
 

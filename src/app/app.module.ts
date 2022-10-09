@@ -7,10 +7,12 @@ import { ThemeServiceService } from './services/theme-service.service';
 import { DecimalPipe } from '@angular/common';
 import { TemplateModule } from './template/template.module';
 import { PagesModule } from './pages/pages.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, TemplateModule, PagesModule],
+  imports: [BrowserModule, AppRoutingModule, TemplateModule, PagesModule, NoopAnimationsModule, MatTooltipModule],
   providers: [ThemeServiceService, DecimalPipe],
   bootstrap: [AppComponent],
 })

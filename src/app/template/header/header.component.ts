@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { Subject } from 'rxjs';
-import { NavegationPagesService } from 'src/app/services/navegation-pages.service';
+import {NavigationPageService} from 'src/app/services/navegation-pages.service';
 import { ThemeServiceService } from 'src/app/services/theme-service.service';
 import { takeUntil } from 'rxjs/operators';
 
@@ -11,66 +11,46 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private stop$ = new Subject<void>();
-  public showMenu: boolean = false;
-  public estadoTheme: string = 'inicial';
-  public seleccionado: string = 'Inicio';
+  public showMenu = false;
+  public defaultTheme = 'dark';
+  public selection = 'skills';
 
   public itemsMenu = [
     {
-      nombre: 'Inicio',
-      icono: 'iconsminds-shop-4',
-      ruta: 'inicio',
+      name: 'About',
+      icon: 'iconsminds-administrator',
+      route: 'about',
     },
     {
-      nombre: 'Acerca',
-      icono: 'iconsminds-administrator',
-      ruta: 'app/portafolio/acerca',
+      name: 'Skills',
+      icon: 'iconsminds-file-clipboard-file---text',
+      route: 'skills',
     },
     {
-      nombre: 'Habilidades',
-      icono: 'iconsminds-file-clipboard-file---text',
-      ruta: 'app/portafolio/habilidades',
+      name: 'Services',
+      icon: 'iconsminds-handshake',
+      route: 'services',
     },
     {
-      nombre: 'Servicios',
-      icono: 'iconsminds-handshake',
-      ruta: 'app/portafolio/servicios',
+      name: 'Experiences',
+      icon: 'iconsminds-suitcase',
+      route: 'experiences',
     },
     {
-      nombre: 'Experiencia',
-      icono: 'iconsminds-suitcase',
-      ruta: 'app/portafolio/cualificado',
+      name: 'Portfolio',
+      icon: 'iconsminds-management',
+      route: 'portfolio',
     },
-    // {
-    //   nombre: 'Contactame',
-    //   icono: 'iconsminds-smartphone-4',
-    //   ruta: 'app/portafolio/contactame',
-    // },
     {
-      nombre: 'Portafolio',
-      icono: 'iconsminds-management',
-      ruta: 'app/portafolio/contactame',
-    },
-    // {
-    //   nombre: 'Proyecto',
-    //   icono: 'iconsminds-smartphone-4',
-    //   ruta: 'app/portafolio/contactame',
-    // },
-    // {
-    //   nombre: 'Testimonio',
-    //   icono: 'iconsminds-smartphone-4',
-    //   ruta: 'app/portafolio/contactame',
-    // },
-    {
-      nombre: 'Contacto',
-      icono: 'iconsminds-smartphone-4',
-      ruta: 'app/portafolio/contactame',
+      name: 'Contact',
+      icon: 'iconsminds-smartphone-4',
+      route: 'contact',
     },
   ];
 
   constructor(
-    private readonly _navegationPageService: NavegationPagesService,
-    private readonly _themeService: ThemeServiceService
+    private readonly navigationPageService: NavigationPageService,
+    private readonly themeService: ThemeServiceService
   ) {}
 
   ngOnInit(): void {
@@ -80,17 +60,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.stop();
   }
 
-  changeEstadoNav(pagina: string): void {
+  onClick(elem: string): void {
     this.showMenu = false;
-    this.seleccionado = pagina;
-    this._navegationPageService.navegationPages(pagina);
+    const element: HTMLElement = document.getElementById(elem);
+    element.scrollIntoView({behavior: 'smooth'});
   }
 
   observarSeleccionadoDesdeOtroComponente(): void {
-    this._navegationPageService.seleccionado$
+    this.navigationPageService.seleccionado$
       .pipe(takeUntil(this.stop$))
-      .subscribe((seleccionado: string) => {
-        this.seleccionado = seleccionado;
+      .subscribe((selection: string) => {
+        this.selection = selection;
       });
   }
 
@@ -99,12 +79,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   changeTheme(): void {
-    if (this.estadoTheme === 'inicial') {
-      this.estadoTheme = 'dark';
-      this._themeService.setDarkTheme();
+    if (this.defaultTheme === 'dark') {
+      this.defaultTheme = 'light';
+      this.themeService.setDefaultTheme();
     } else {
-      this.estadoTheme = 'inicial';
-      this._themeService.setDefaultTheme();
+      this.defaultTheme = 'dark';
+      this.themeService.setDarkTheme();
     }
   }
 

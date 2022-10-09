@@ -44,7 +44,7 @@ button.top {
   }
 }
 
-.containerColores {
+.containerColors {
   display: flex;
   position: fixed;
   top: 4.5rem;
@@ -173,6 +173,12 @@ button.top {
   cursor: pointer;
   background-color: hsl(340, 69%, 61%);
 }
+
+.colorGold {
+  cursor: pointer;
+  background-color: hsl(44, 100%, 50%);
+}
+
 .colorPurple:hover {
   background-color: hsl(250, 45%, 45%);
 }
@@ -182,16 +188,20 @@ button.top {
 .colorPink:hover {
   background-color: hsl(340, 45%, 45%);
 }
-.mostrarBotonColor {
+.colorGold:hover {
+  background-color: hsl(340, 45%, 45%);
+}
+
+.showButtonColor {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s linear;
 }
-.ocultarBotonColor {
+.hideButtonColor {
   visibility: visible;
   opacity: 1;
 }
-.todaLaPagina {
+.pagination {
   height: 100vh;
 }
 

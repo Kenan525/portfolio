@@ -51,6 +51,13 @@ export const pink: Theme = {
   },
 };
 
+export const gold: Theme = {
+  name: 'gold',
+  properties: {
+    '--hue-color': '44'
+  }
+};
+
 export const dark: Theme = {
   name: 'dark',
   properties: {

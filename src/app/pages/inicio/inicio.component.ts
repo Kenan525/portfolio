@@ -12,4 +12,9 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClick(elem: string) {
+    const element: HTMLElement = document.getElementById(elem);
+    element.scrollIntoView({behavior: 'smooth'});
+  }
+
 }

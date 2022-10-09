@@ -7,6 +7,7 @@ import {
   green,
   pink,
   purple,
+  gold
 } from '../interfaces/ThemeInterface';
 @Injectable({
   providedIn: 'root',
@@ -20,24 +21,29 @@ export class ThemeServiceService {
     green,
     pink,
     purple,
+    gold
   ];
 
   constructor() {}
 
-  setDefaultTheme() {
+  setDefaultTheme(): void {
     this.setActiveTheme(defaultTheme);
   }
 
-  setPurple() {
+  setPurple(): void {
     this.setActiveTheme(purple);
   }
 
-  setGreen() {
+  setGreen(): void {
     this.setActiveTheme(green);
   }
 
-  setPink() {
+  setPink(): void {
     this.setActiveTheme(pink);
+  }
+
+  setGold(): void {
+    this.setActiveTheme(gold);
   }
 
   setDarkTheme(): void {

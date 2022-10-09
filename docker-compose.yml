@@ -1,0 +1,24 @@
+version: "2"
+services:
+  portfolio_server:
+    container_name: portfolio_server
+    image: nginx
+    volumes:
+      - "./persistence/app_frontend:/usr/share/nginx/html"
+      - "./frontend/nginx.conf:/etc/nginx/nginx.conf"
+      - "./frontend/default.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "./frontend/max_upload.conf:/etc/nginx/conf.d/max_upload.conf:ro"
+    networks:
+      - reverseproxy_default
+      - default
+    restart: always
+    environment:
+      - "VIRTUAL_HOST=portfolio.hr-puzzle.eu"
+      - "SELF_SIGNED_HOST=portfolio.hr-puzzle.eu"
+
+
+
+
+networks:
+  reverseproxy_default:
+    external: true

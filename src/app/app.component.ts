@@ -6,13 +6,12 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Router } from '@angular/router';
 import { ThemeServiceService } from './services/theme-service.service';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DecimalPipe } from '@angular/common';
-import { NavegationPagesService } from './services/navegation-pages.service';
+import {NavigationPageService} from './services/navegation-pages.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -25,7 +24,7 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   private stop$ = new Subject<void>();
-  botonColores: boolean = false;
+  buttonColors: boolean = false;
   collapsed = false;
   init = false;
 
@@ -33,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public reachedTheEnd: boolean;
 
-  @ViewChild('inicio', { static: true }) home: ElementRef;
+  @ViewChild('intro', { static: true }) home: ElementRef;
   @ViewChild('about') about: ElementRef;
   @ViewChild('skill') skill: ElementRef;
   @ViewChild('services') services: ElementRef;
@@ -44,14 +43,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('contact') contact: ElementRef;
 
   title = 'scroll-page';
-  seleccionado = 'Inicio';
-
-  public estadoTheme: string = 'inicial';
 
   constructor(
     private readonly themeService: ThemeServiceService,
     private decimalPipe: DecimalPipe,
-    private readonly _navigationPages: NavegationPagesService
+    private readonly navigatePagesService: NavigationPageService
   ) {}
   ngAfterViewInit(): void {}
 
@@ -68,7 +64,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       this.contact,
     ];
     const scrollY = window.pageYOffset;
-    console.log('hola', sections);
 
     sections.forEach((element: ElementRef) => {
       if (element) {
@@ -76,10 +71,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         const sectionHeight = current.offsetHeight;
         const sectionTop = current.offsetTop - 50;
 
-        var sectionID = current.id;
+        const sectionID = current.id;
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          console.log('el id es:', sectionID);
-          this._navigationPages.seleccionado(sectionID);
+          this.navigatePagesService.seleccionado(sectionID);
         } else {
         }
       }
@@ -87,7 +81,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
-    this.changeEstadoNav();
+    this.changeNavigation();
     this.defaultColor();
     this.defaultTheme();
     gsap.to('progress', {
@@ -102,7 +96,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
             const value = Number(
               this.decimalPipe.transform(options.progress, '1.2-2')
             );
-            console.log(value);
             this.reachedTheEnd2 = value > 0.07;
             this.reachedTheEnd = value > 0.84;
             this.verificarIdElemtHtml();
@@ -117,37 +110,37 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.stop();
   }
 
-  changeEstadoNav(): void {
-    this._navigationPages.pagina$
+  changeNavigation(): void {
+    this.navigatePagesService.pagina$
       .pipe(takeUntil(this.stop$))
-      .subscribe((pagina: string) => {
-        switch (pagina) {
-          case 'Inicio':
-            this.elemetoHtmlSeleccionado(this.home);
+      .subscribe((page: string) => {
+        switch (page) {
+          case 'intro':
+            this.elementToHtmlSelection(this.home);
             break;
           case 'Acerca':
-            this.elemetoHtmlSeleccionado(this.about);
+            this.elementToHtmlSelection(this.about);
             break;
           case 'Habilidades':
-            this.elemetoHtmlSeleccionado(this.skill);
+            this.elementToHtmlSelection(this.skill);
             break;
           case 'Servicios':
-            this.elemetoHtmlSeleccionado(this.services);
+            this.elementToHtmlSelection(this.services);
             break;
           case 'Experiencia':
-            this.elemetoHtmlSeleccionado(this.qualification);
+            this.elementToHtmlSelection(this.qualification);
             break;
           case 'Portafolio':
-            this.elemetoHtmlSeleccionado(this.portfolio);
+            this.elementToHtmlSelection(this.portfolio);
             break;
           case 'Proyecto':
-            this.elemetoHtmlSeleccionado(this.project);
+            this.elementToHtmlSelection(this.project);
             break;
           case 'Testimonio':
-            this.elemetoHtmlSeleccionado(this.testimonial);
+            this.elementToHtmlSelection(this.testimonial);
             break;
           case 'Contacto':
-            this.elemetoHtmlSeleccionado(this.contact);
+            this.elementToHtmlSelection(this.contact);
             break;
 
           default:
@@ -156,8 +149,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       });
   }
 
-  defaultTheme() {
-    this.themeService.setDefaultTheme();
+  defaultTheme(): void {
+    this.themeService.setDarkTheme();
     setTimeout(() => {
       document.body.classList.add('animate-colors-transition');
     }, 500);
@@ -166,17 +159,18 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   defaultColor(): void {
     this.themeService.setPurple();
   }
-  elemetoHtmlSeleccionado(elem: ElementRef) {
-    const elementoNat = elem.nativeElement;
-    elementoNat.scrollIntoView({ behavior: 'smooth' });
+
+  elementToHtmlSelection(elem: ElementRef): void {
+    const elementToNativeElement = elem.nativeElement;
+    elementToNativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
-  onClick(elem: HTMLElement) {
-    this._navigationPages.seleccionado('Inicio');
+  onClick(): void {
+    const elem = document.getElementById('intro');
     elem.scrollIntoView({ behavior: 'smooth' });
   }
 
-  public toggle(menu: HTMLElement) {
+  public toggle(menu: HTMLElement): void {
     const list = Array.prototype.slice.call(menu.children) as HTMLElement[];
     this.init = true;
     this.collapsed = !this.collapsed;
@@ -185,11 +179,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       translateY: 0,
       duration: 0.6,
     });
-    this.animateElements(this.collapsed, list, menu);
+    this.animateElements(this.collapsed, list, menu).then();
   }
 
-  private async animateElements(collapse: boolean, list: HTMLElement[], menu) {
-    this.botonColores = true;
+  private async animateElements(collapse: boolean, list: HTMLElement[], menu): Promise<void> {
+    this.buttonColors = true;
     if (collapse) {
       for (let i = 0; i < list.length; i++) {
         const sliced = list.slice(i, list.length);
@@ -200,7 +194,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         });
       }
       setTimeout(() => {
-        this.botonColores = false;
+        this.buttonColors = false;
       }, 1000);
     } else {
       gsap
@@ -213,7 +207,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
             translateY: -80,
             duration: 0.3,
           });
-          this.botonColores = false;
+          this.buttonColors = false;
         });
     }
   }
@@ -228,6 +222,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   colorPink(): void {
     this.themeService.setPink();
+  }
+
+  colorGold(): void {
+    this.themeService.setGold();
   }
 
   stop(): void {
