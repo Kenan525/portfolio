@@ -714,11 +714,25 @@ DefaultComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineC
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InicioComponent", function() { return InicioComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var typed_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! typed.js */ "ELNm");
+/* harmony import */ var typed_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(typed_js__WEBPACK_IMPORTED_MODULE_1__);
 
 
+
+const _c0 = ["typedString"];
 class InicioComponent {
     constructor() { }
     ngOnInit() {
+    }
+    ngAfterViewInit() {
+        console.log(this.typedString.nativeElement);
+        const options = {
+            strings: ['Kenan', 'Web Developer', 'Angular Developer', 'Backend Developer'],
+            typeSpeed: 100,
+            backSpeed: 60,
+            loop: true
+        };
+        const typed = new typed_js__WEBPACK_IMPORTED_MODULE_1___default.a(this.typedString.nativeElement, options);
     }
     onClick(elem) {
         const element = document.getElementById(elem);
@@ -726,7 +740,12 @@ class InicioComponent {
     }
 }
 InicioComponent.ɵfac = function InicioComponent_Factory(t) { return new (t || InicioComponent)(); };
-InicioComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: InicioComponent, selectors: [["app-inicio"]], decls: 25, vars: 0, consts: [[1, "home", "section"], [1, "home__container", "containerPersonal", "grid"], [1, "home__content", "grid"], [1, "home__social"], ["href", "https://linkedin.com/in/kenodevelop", "target", "_blank", 1, "home__social-icon"], [1, "fab", "fa-linkedin"], ["href", "https://github.com/Kenan525", "target", "_blank", 1, "home__social-icon"], [1, "fab", "fa-github"], [1, "home__img"], ["viewBox", "0 0 200 187", "xmlns", "http://www.w3.org/2000/svg", 0, "xmlns", "xlink", "http://www.w3.org/1999/xlink", 1, "home__blob"], ["id", "mask0", "mask-type", "alpha"], ["d", "M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547\n                        130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775\n                        97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666\n                        0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"], ["mask", "url(#mask0)"], ["d", "M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346\n                        165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403\n                        129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028\n                        -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"], ["x", "12", "y", "18", "href", "assets/img/my_image_cropped.png", 1, "home__blob-img"], [1, "home__data"], [1, "home__title"], [1, "home__subtitle"], [1, "home__description"], [1, "button", "button--flex", 3, "click"], [1, "fas", "fa-comments", "button__icon"]], template: function InicioComponent_Template(rf, ctx) { if (rf & 1) {
+InicioComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: InicioComponent, selectors: [["app-inicio"]], viewQuery: function InicioComponent_Query(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵviewQuery"](_c0, true);
+    } if (rf & 2) {
+        var _t;
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.typedString = _t.first);
+    } }, decls: 27, vars: 0, consts: [[1, "home", "section"], [1, "home__container", "containerPersonal", "grid"], [1, "home__content", "grid"], [1, "home__social"], ["href", "https://linkedin.com/in/kenodevelop", "target", "_blank", 1, "home__social-icon"], [1, "fab", "fa-linkedin"], ["href", "https://github.com/Kenan525", "target", "_blank", 1, "home__social-icon"], [1, "fab", "fa-github"], [1, "home__img"], ["viewBox", "0 0 200 187", "xmlns", "http://www.w3.org/2000/svg", 0, "xmlns", "xlink", "http://www.w3.org/1999/xlink", 1, "home__blob"], ["id", "mask0", "mask-type", "alpha"], ["d", "M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547\n                        130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775\n                        97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666\n                        0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"], ["mask", "url(#mask0)"], ["d", "M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346\n                        165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403\n                        129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028\n                        -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"], ["x", "12", "y", "18", "href", "assets/img/my_image_cropped.png", 1, "home__blob-img"], [1, "home__data"], [1, "home__title"], ["id", "typedString"], ["typedString", ""], [1, "home__subtitle"], [1, "home__description"], [1, "button", "button--flex", 3, "click"], [1, "fas", "fa-comments", "button__icon"]], template: function InicioComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "section", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -753,18 +772,19 @@ InicioComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnamespaceHTML"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "div", 15);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "h1", 16);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, " Hi, I'm Kenan ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, " Hi, I'm ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](18, "span", 17, 18);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "h3", 17);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, "FullStack Developer");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "h3", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "FullStack Developer");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "p", 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "I have been working as a FullStack Dev for about 3 Years.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "p", 20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23, "I have been working as a FullStack Dev for about 3 Years.");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "a", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function InicioComponent_Template_a_click_22_listener() { return ctx.onClick("contact"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](23, "i", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, "Let's chat");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "a", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function InicioComponent_Template_a_click_24_listener() { return ctx.onClick("contact"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](25, "i", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "Let's chat");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -778,7 +798,10 @@ InicioComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
                 templateUrl: './inicio.component.html',
                 styleUrls: ['./inicio.component.scss']
             }]
-    }], function () { return []; }, null); })();
+    }], function () { return []; }, { typedString: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"],
+            args: ['typedString']
+        }] }); })();
 
 
 /***/ }),
@@ -1115,7 +1138,8 @@ class AppComponent {
         this.init = false;
         this.title = 'scroll-page';
     }
-    ngAfterViewInit() { }
+    ngAfterViewInit() {
+    }
     verificarIdElemtHtml() {
         const sections = [
             this.home,

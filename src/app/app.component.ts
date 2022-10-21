@@ -29,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   init = false;
 
   reachedTheEnd2: boolean;
+  public isLoading = true;
 
   public reachedTheEnd: boolean;
 
@@ -81,7 +82,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    /*setTimeout(() => {
+      this.isLoading = false;
+    }, 5000);*/
+    this.isLoading = false;
     this.changeNavigation();
     this.defaultColor();
     this.defaultTheme();

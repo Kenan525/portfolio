@@ -16,7 +16,6 @@ export class InicioComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.typedString.nativeElement);
     const options = {
       strings: ['Kenan', 'Web Developer', 'Angular Developer', 'Backend Developer'],
       typeSpeed: 100,
@@ -27,7 +26,7 @@ export class InicioComponent implements OnInit {
     const typed = new Typed(this.typedString.nativeElement, options);
   }
 
-  onClick(elem: string) {
+  onClick(elem: string): void {
     const element: HTMLElement = document.getElementById(elem);
     element.scrollIntoView({behavior: 'smooth'});
   }

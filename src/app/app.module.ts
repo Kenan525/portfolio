@@ -9,9 +9,10 @@ import { TemplateModule } from './template/template.module';
 import { PagesModule } from './pages/pages.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoadingComponent],
   imports: [BrowserModule, AppRoutingModule, TemplateModule, PagesModule, NoopAnimationsModule, MatTooltipModule],
   providers: [ThemeServiceService, DecimalPipe],
   bootstrap: [AppComponent],

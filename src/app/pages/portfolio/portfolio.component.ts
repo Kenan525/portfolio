@@ -4,7 +4,6 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, {
   Navigation,
   Pagination,
@@ -27,14 +26,14 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     const swiper = new Swiper('.portfolio__container', {
       cssMode: true,
-      // mousewheel: true,
+      mousewheel: true,
       // keyboard: true,
       // slidesPerView: 1,
       // spaceBetween: 30,
-      // loop: true,
+      loop: true,
       pagination: {
         el: '.swiper-pagination',
-        // clickable: true,
+        //clickable: true,
       },
       navigation: {
         nextEl: '.swiper-button-next',
