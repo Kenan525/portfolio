@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       name: 'Skills',
       icon: 'iconsminds-file-clipboard-file---text',
       route: 'skills',
-    },
+    }/*,
     {
       name: 'Services',
       icon: 'iconsminds-handshake',
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       name: 'Experiences',
       icon: 'iconsminds-suitcase',
       route: 'experiences',
-    },
+    }*/,
     {
       name: 'Portfolio',
       icon: 'iconsminds-management',

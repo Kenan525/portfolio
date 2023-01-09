@@ -11,7 +11,7 @@ export class SkillComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  cambioOpenLIst(nameList: string): void {
+  changeOpenLIst(nameList: string): void {
     this.openList = nameList;
   }
 }
